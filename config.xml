@@ -84,4 +84,8 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-sqlite-storage" spec="2.5.1" />
     <plugin name="cordova-plugin-geofence" spec="0.7.0" />
+    <plugin name="cordova-plugin-googlemaps" spec="2.4.6">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyB0Dk71Zs2ICm1NRoUCTCjdB6E6IS-CrLs" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyCfshD83y_WoimDWwf1R31gEjR2uNOWSt4" />
+    </plugin>
 </widget>
