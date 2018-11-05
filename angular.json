@@ -40,6 +40,11 @@
                 "input": "src/global.scss"
               }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
