@@ -1,5 +1,7 @@
 {
   "name": "localslist",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
