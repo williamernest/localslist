@@ -28,12 +28,6 @@ export class HomePage implements OnInit, OnDestroy {
     });
   }
 
-  // ngAfterViewInit() {
-  //   this.elements = Array.from(
-  //     this.myElement.nativeElement.querySelectorAll('.mdc-card__actions')
-  //   ).map(ele => new MDCCard(ele));
-  // }
-
   ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
