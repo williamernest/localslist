@@ -3,17 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import {IonicModule, NavParams} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import { EditPage } from './edit.page';
-import {EditViewComponent} from '../edit-view/edit-view.component';
-import {MapModule} from '../map/map.module';
+import { ViewGroupPage } from './view-group.page';
 import {TopAppBarModule} from '../top-app-bar/top-app-bar.module';
+import {MapModule} from '../map/map.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: EditPage
+    component: ViewGroupPage
   }
 ];
 
@@ -22,10 +21,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    MapModule,
-    TopAppBarModule,
+      TopAppBarModule,
+      RouterModule,
+      MapModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [EditPage, EditViewComponent],
+  declarations: [ViewGroupPage]
 })
-export class EditPageModule {}
+export class ViewGroupPageModule {}

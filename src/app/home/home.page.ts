@@ -1,14 +1,14 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { DataModelService } from '../data-model.service';
-import { Config, Group } from '../Model';
-import { Subscription } from 'rxjs/internal/Subscription';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {DataModelService} from '../data-model.service';
+import {Config, Group} from '../Model';
+import {Subscription} from 'rxjs/internal/Subscription';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['home.page.scss']
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit, OnDestroy {
   groups: Array<Group> = [];
@@ -19,7 +19,7 @@ export class HomePage implements OnInit, OnDestroy {
   ) {}
 
   addNewGroup(): void {
-    this.navCtrl.navigateForward('/edit');
+    this.router.navigate(['/edit-group']);
   }
 
   ngOnInit() {
@@ -35,6 +35,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   route(id: string) {
-    this.navCtrl.navigateForward('/edit/' + id);
+    this.router.navigate(['/view-group', id]);
   }
 }

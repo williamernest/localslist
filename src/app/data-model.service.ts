@@ -11,7 +11,8 @@ import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 export class DataModelService {
 
   private data: Config = new Config();
-  private observer = new BehaviorSubject<Object>(this.data);
+  private observer = new BehaviorSubject<Config>(this.data);
+  private loaded = false;
 
   constructor(private storage: Storage, private platform: Platform) {
     this.platform.ready().then(() => this.load());
@@ -23,16 +24,13 @@ export class DataModelService {
   }
 
   load() {
-    this.storage.get('locallist').catch((err) => console.log(err)).then((resp) => {
+    return this.storage.get('locallist').catch((err) => console.log(err)).then((resp) => {
       if (resp) {
         this.data = JSON.parse(resp);
         this.observer.next(this.data);
       }
+      this.loaded = true;
     });
-  }
-
-  getGroup(id: string): Group {
-    return this.data.groups[id];
   }
 
   updateGroup(group: Group): void {
@@ -40,7 +38,12 @@ export class DataModelService {
     this.save();
   }
 
-  getDataObserver(): Observable<Object> {
+  deleteGroup(group: Group): void {
+    delete this.data.groups[group.id];
+    this.save();
+  }
+
+  getDataObserver(): Observable<Config> {
     return this.observer.asObservable();
   }
 }

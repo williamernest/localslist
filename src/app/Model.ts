@@ -24,18 +24,18 @@ class Point extends DateObject {
   title: string;
   location: LatLon;
   radius: number;
-  conditions: Array<Condition>;
+  conditions: Array<Condition> = [];
 }
 
 class Group extends DateObject {
   id: string;
-  title: string;
-  description: string;
-  points: Array<Point>;
+  title = '';
+  description = '';
+  points: Array<Point> = [];
 
   constructor() {
     super();
-    this.id = shortId.generate();
+    this.id = <string>shortId.generate();
   }
 }
 

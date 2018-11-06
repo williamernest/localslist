@@ -1,15 +1,16 @@
 import {
-    GoogleMaps,
-    GoogleMap,
-    GoogleMapsEvent,
-    GoogleMapOptions,
-    CameraPosition,
-    MarkerOptions,
-    Marker,
-    Environment
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker,
+  Environment, LatLng, LatLngBounds
 } from '@ionic-native/google-maps';
-import {AfterViewInit, Component} from '@angular/core/';
+import {AfterViewInit, Component, Input} from '@angular/core/';
 import {Platform} from '@ionic/angular';
+import {Point} from '../Model';
 
 @Component({
     selector: 'app-map',
@@ -17,6 +18,11 @@ import {Platform} from '@ionic/angular';
 })
 export class MapComponent implements AfterViewInit {
     map: GoogleMap;
+    @Input() points: Array<Point> = [];
+
+
+    private markers: Array<Marker> = [];
+
     constructor(private platform: Platform) { }
 
     ngAfterViewInit() {
@@ -30,36 +36,37 @@ export class MapComponent implements AfterViewInit {
 
     loadMap() {
 
-        // This code is necessary for browser
-        Environment.setEnv({
-            'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q',
-            'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q'
-        });
+      // This code is necessary for browser
+      Environment.setEnv({
+        'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q',
+        'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q'
+      });
 
-        const mapOptions: GoogleMapOptions = {
-            camera: {
-                target: {
-                    lat: 43.0741904,
-                    lng: -89.3809802
-                },
-                zoom: 18,
-                tilt: 30
-            }
-        };
+      const mapOptions: GoogleMapOptions = {
+        camera: {
+          tilt: 30,
+        }
+      };
 
-        this.map = GoogleMaps.create('map_canvas', mapOptions);
+      this.map = GoogleMaps.create('map_canvas', mapOptions);
 
-        const marker: Marker = this.map.addMarkerSync({
-            title: 'Ionic',
-            icon: 'blue',
-            animation: 'DROP',
-            position: {
-                lat: 43.0741904,
-                lng: -89.3809802
-            }
-        });
-        marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-            alert('clicked');
-        });
+      this.points.forEach((point) => this.markers.push(this.map.addMarkerSync({
+        title: 'Ionic',
+        icon: 'blue',
+        animation: 'DROP',
+        position: {
+          lat: point.location.lat,
+          lng: point.location.lon
+        }
+      })));
+
+      const mapZoom = {
+        target: [
+          ...this.points.map((point) => new LatLng(point.location.lat, point.location.lon)),
+        ],
+      };
+      this.map.animateCamera(mapZoom);
+
+      debugger;
     }
 }

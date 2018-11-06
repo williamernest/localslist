@@ -1,0 +1,51 @@
+<app-top-app-bar title="Add New List" type="cancel" (navClick)="cancel()">
+  <button class="mdc-top-app-bar__action-item" (click)="save()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"/></svg>
+  </button>
+  <button class="mdc-top-app-bar__action-item" (click)="deleteGroup()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
+  </button>
+</app-top-app-bar>
+
+<ion-content padding>
+  <div class="edit-view-container mdc-top-app-bar--fixed-adjust">
+    <div class="edit-view-map">
+      <!--<app-map style="min-height: 200px;"></app-map>-->
+    </div>
+    <div class="edit-view-content">
+
+      <div class="mdc-text-field mdc-text-field--outlined edit-view-textfield">
+        <input class="mdc-text-field__input" type="text" id="uaqvbIDc4" [ngModel]="group?.title" (ngModelChange)="title = $event">
+        <label class="mdc-floating-label" for="uaqvbIDc4" [ngClass]="{'mdc-floating-label--float-above': group?.title !== ''}">Title</label>
+        <div class="mdc-notched-outline" [ngClass]="{'mdc-notched-outline--notched': group?.title !== ''}"><svg>
+          <path class="mdc-notched-outline__path"></path>
+        </svg></div>
+        <div class="mdc-notched-outline__idle"></div>
+      </div>
+
+      <div class="mdc-text-field mdc-text-field--textarea edit-view-textfield">
+        <textarea class="mdc-text-field__input" type="text" id="uaqvbIDc5" [ngModel]="group?.description" (ngModelChange)="description = $event"></textarea>
+        <label class="mdc-floating-label" [ngClass]="{'mdc-floating-label--float-above': group?.description !== ''}" for="uaqvbIDc5">Description</label>
+      </div>
+
+      <!--<div class="edit-view-subscribed">-->
+      <!--<label for="checkbox-1">Subscribed</label>-->
+      <!--<div class="mdc-checkbox">-->
+      <!--<input type="checkbox"-->
+      <!--class="mdc-checkbox__native-control"-->
+      <!--id="checkbox-1"/>-->
+      <!--<div class="mdc-checkbox__background">-->
+      <!--<svg class="mdc-checkbox__checkmark"-->
+      <!--viewBox="0 0 24 24">-->
+      <!--<path class="mdc-checkbox__checkmark-path"-->
+      <!--fill="none"-->
+      <!--d="M1.73,12.91 8.1,19.28 22.79,4.59"/>-->
+      <!--</svg>-->
+      <!--<div class="mdc-checkbox__mixedmark"></div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+
+    </div>
+  </div>
+</ion-content>
