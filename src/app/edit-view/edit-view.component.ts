@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
 import { MDCTextField} from '@material/textfield/index';
+import {Group} from '../Model';
 
 @Component({
   selector: 'app-edit-view',
@@ -9,6 +10,8 @@ import { MDCTextField} from '@material/textfield/index';
 export class EditViewComponent implements AfterViewInit {
 
   private elements = [];
+  @Input() group: Group;
+
   constructor(private myElement: ElementRef) { }
 
   ngAfterViewInit() {

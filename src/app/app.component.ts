@@ -22,7 +22,7 @@ export class AppComponent {
     },
       {
         title: 'Edit List',
-          url: '/edit',
+          url: '/edit/:id',
           icon: 'edit'
       }
   ];

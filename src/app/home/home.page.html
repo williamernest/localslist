@@ -4,6 +4,10 @@
   <div class="mdc-top-app-bar--fixed-adjust">
   </div>
 
+  <ul>
+    <li *ngFor="let group of groups" (click)="route(group.id)">{{group.title}}</li>
+  </ul>
+
   <button class="mdc-fab app-add-new-fab" (click)="addNewGroup()">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
   </button>

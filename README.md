@@ -7,6 +7,7 @@
  1. Run `npm install`.
  1. Run `npm rebuild node-sass`. 
  1. Run `ionic serve --lab`. 
+ 1. Run `ionic serve --lab`. 
  
  
  ## Adding Components 

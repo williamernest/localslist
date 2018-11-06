@@ -9,7 +9,6 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {MapModule} from './map/map.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +17,12 @@ import {MapModule} from './map/map.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(
+        {
+          name: '__mydb',
+          driverOrder: ['indexeddb', 'sqlite', 'websql']
+        }
+    )
   ],
   providers: [
     StatusBar,

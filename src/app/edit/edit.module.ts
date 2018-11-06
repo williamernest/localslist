@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule, NavParams} from '@ionic/angular';
 
 import { EditPage } from './edit.page';
 import {EditViewComponent} from '../edit-view/edit-view.component';
