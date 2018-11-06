@@ -67,6 +67,5 @@ export class MapComponent implements AfterViewInit {
       };
       this.map.animateCamera(mapZoom);
 
-      debugger;
     }
 }
