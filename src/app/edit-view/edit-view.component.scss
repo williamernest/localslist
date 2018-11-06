@@ -1,5 +1,6 @@
-@import "@material/textfield/mdc-text-field";
-@import "@material/checkbox/mdc-checkbox";
+@import '../../theme/ll-theme';
+@import '@material/textfield/mdc-text-field';
+@import '@material/checkbox/mdc-checkbox';
 
 .edit-view-container {
   display: flex;
@@ -18,10 +19,10 @@
 }
 
 .edit-view-subscribed {
-   display: flex;
-   justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 
   label {
     margin: auto 0;
   }
- }
+}

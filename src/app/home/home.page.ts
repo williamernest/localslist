@@ -1,20 +1,22 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {NavController} from '@ionic/angular';
-import {DataModelService} from '../data-model.service';
-import {Config, Group} from '../Model';
-import {Subscription} from 'rxjs/internal/Subscription';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { DataModelService } from '../data-model.service';
+import { Config, Group } from '../Model';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit, OnDestroy {
-
   groups: Array<Group> = [];
   sub: Subscription;
-  constructor(private navCtrl: NavController, private dataModel: DataModelService) {}
+  constructor(
+    private navCtrl: NavController,
+    private dataModel: DataModelService
+  ) {}
 
   addNewGroup(): void {
     this.navCtrl.navigateForward('/edit');
@@ -25,6 +27,12 @@ export class HomePage implements OnInit, OnDestroy {
       this.groups = Array.from(Object.values(data.groups));
     });
   }
+
+  // ngAfterViewInit() {
+  //   this.elements = Array.from(
+  //     this.myElement.nativeElement.querySelectorAll('.mdc-card__actions')
+  //   ).map(ele => new MDCCard(ele));
+  // }
 
   ngOnDestroy() {
     if (this.sub) {

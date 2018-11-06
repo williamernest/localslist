@@ -3,10 +3,14 @@
 <ion-content padding>
   <div class="mdc-top-app-bar--fixed-adjust">
   </div>
-
-  <ul>
-    <li *ngFor="let group of groups" (click)="route(group.id)">{{group.title}}</li>
-  </ul>
+  <div *ngFor="let group of groups" (click)="route(group.id)" class="mdc-card">
+    <div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(src/assets/images/default_map.png);">
+      <div class="mdc-card__label">
+        <h2 class="mdc-card__title mdc-typography--headline6">{{group.title}}</h2>
+        <h3 class="mdc-card__subtitle mdc-typography--subtitle2">{{group.description}}</h3>
+      </div>
+    </div>
+  </div>
 
   <button class="mdc-fab app-add-new-fab" (click)="addNewGroup()">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
