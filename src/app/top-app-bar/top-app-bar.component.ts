@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {MDCTopAppBar} from '@material/top-app-bar/index';
 
 
@@ -10,11 +10,16 @@ import {MDCTopAppBar} from '@material/top-app-bar/index';
 export class TopAppBarComponent implements AfterViewInit, OnDestroy {
 
   private topAppBar: MDCTopAppBar;
+  @Input() icons = [];
+  @Input() title: string;
+  @Input() type = 'menu';
+  @Output() navClick = new EventEmitter();
 
   constructor(private element: ElementRef) { }
 
   ngAfterViewInit() {
     this.topAppBar = new MDCTopAppBar(this.element.nativeElement.firstChild);
+    this.topAppBar.listen('MDCTopAppBar:nav', () => this.navClick.emit());
   }
 
   ngOnDestroy() {

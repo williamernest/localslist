@@ -1,2 +1,7 @@
-@import "@material/ripple/mdc-ripple";
-@import "@material/top-app-bar/mdc-top-app-bar";
+@import "@material/fab/mdc-fab";
+
+.app-add-new-fab {
+  bottom: 15px;
+  position: absolute;
+  right: 15px;
+}

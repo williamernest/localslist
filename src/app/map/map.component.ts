@@ -8,26 +8,32 @@ import {
     Marker,
     Environment
 } from '@ionic-native/google-maps';
-import { Component } from '@angular/core/';
+import {AfterViewInit, Component} from '@angular/core/';
+import {Platform} from '@ionic/angular';
 
 @Component({
     selector: 'app-map',
     templateUrl: 'map.component.html'
 })
-export class MapComponent {
+export class MapComponent implements AfterViewInit {
     map: GoogleMap;
-    constructor() { }
+    constructor(private platform: Platform) { }
 
-    ionViewDidLoad() {
-        this.loadMap();
+    ngAfterViewInit() {
+        this.initMap();
+    }
+
+    async initMap() {
+        await this.platform.ready();
+        await this.loadMap();
     }
 
     loadMap() {
 
         // This code is necessary for browser
         Environment.setEnv({
-            'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCfshD83y_WoimDWwf1R31gEjR2uNOWSt4',
-            'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCfshD83y_WoimDWwf1R31gEjR2uNOWSt4'
+            'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q',
+            'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q'
         });
 
         const mapOptions: GoogleMapOptions = {

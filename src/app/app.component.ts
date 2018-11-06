@@ -19,7 +19,12 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
-    }
+    },
+      {
+        title: 'Edit List',
+          url: '/edit',
+          icon: 'edit'
+      }
   ];
 
   constructor(

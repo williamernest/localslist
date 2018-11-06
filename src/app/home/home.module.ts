@@ -5,13 +5,16 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
-import { TopAppBarComponent } from '../top-app-bar/top-app-bar.component';
+import {MapModule} from '../map/map.module';
+import {TopAppBarModule} from '../top-app-bar/top-app-bar.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+      MapModule,
+      TopAppBarModule,
     RouterModule.forChild([
       {
         path: '',
@@ -19,6 +22,6 @@ import { TopAppBarComponent } from '../top-app-bar/top-app-bar.component';
       }
     ])
   ],
-  declarations: [HomePage, TopAppBarComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}
