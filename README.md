@@ -7,7 +7,9 @@
  1. Run `npm install`.
  1. Run `npm rebuild node-sass`. 
  1. Run `ionic serve --lab`. 
- 1. Run `ionic serve --lab`. 
+ > Note: If this fails, try the below commands.
+ 1. Run `ionic cordova platform add browser`. 
+ 1. Run `ionic cordova run browser -l `. 
  
  
  ## Adding Components 
