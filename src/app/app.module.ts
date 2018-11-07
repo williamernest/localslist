@@ -9,6 +9,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ScreenComponent } from './screen/screen.component';
 import {Geofence} from "@ionic-native/geofence/ngx"
 import {DataModelService} from './data-model.service';
 
