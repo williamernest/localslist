@@ -1,12 +1,5 @@
 @import '../../theme/ll-theme';
-@import '@material/fab/mdc-fab';
 @import '@material/card/mdc-card';
-
-.app-add-new-fab {
-  bottom: 15px;
-  position: fixed;
-  right: 15px;
-}
 
 .mdc-card {
   margin-bottom: 2rem;

@@ -1,0 +1,9 @@
+<app-top-app-bar [title]="group?.title" type="back" (navClick)="navigateBack()">
+</app-top-app-bar>
+
+<ion-content>
+  <div class="mdc-top-app-bar--fixed-adjust content">
+    <app-map (cameraPosition)="currentPoint = $event"></app-map>
+    <button class="mdc-button--raised mdc-button select-point-button" (click)="selectPoint()">Save Location</button>
+  </div>
+</ion-content>

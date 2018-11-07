@@ -21,10 +21,17 @@ class Condition extends DateObject {
 }
 
 class Point extends DateObject {
+  id: string;
   title: string;
+  description: string;
   location: LatLon;
   radius: number;
   conditions: Array<Condition> = [];
+  constructor() {
+    super();
+    this.id = <string>shortId.generate();
+  }
+
 }
 
 class Group extends DateObject {

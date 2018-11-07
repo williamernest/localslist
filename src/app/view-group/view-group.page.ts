@@ -17,7 +17,7 @@ export class ViewGroupPage implements OnInit, OnDestroy, AfterViewInit {
   id: string;
   sub: Subscription;
   tab: MDCTabBar;
-  currenTab = 'list';
+  currentTab = 'list';
 
   constructor(private router: Router, private dataModel: DataModelService, private location: Location, private route: ActivatedRoute,
               private myElement: ElementRef) {}
@@ -42,19 +42,27 @@ export class ViewGroupPage implements OnInit, OnDestroy, AfterViewInit {
   }
 
   editGroup(): void {
-    this.router.navigate(['/edit-group', this.group.id]);
+    this.router.navigate(['edit-group', this.group.id]);
   }
 
   navigateBack(): void {
-    this.location.back();
+    this.router.navigate(['/']);
   }
 
   showList() {
-    this.currenTab = 'list';
+    this.currentTab = 'list';
   }
 
   showMap() {
-    this.currenTab = 'map';
+    this.currentTab = 'map';
+  }
+
+  addNewPoint() {
+    this.router.navigate(['view-group/', this.group.id, 'point-map']);
+  }
+
+  editPoint(id: string) {
+    this.router.navigate(['/view-group', this.group.id, 'edit-point', id]);
   }
 
 }

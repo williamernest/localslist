@@ -12,7 +12,16 @@
 
 @import "@material/typography/mdc-typography";
 @import './app/top-app-bar/top-app-bar.component';
+@import '@material/fab/mdc-fab';
+@import '@material/button/mdc-button';
+@import '@material/textfield/mdc-text-field';
 
 body {
   background-color: #e6e6e6;
+}
+
+.app-add-new-fab {
+  bottom: 15px;
+  position: fixed;
+  right: 15px;
 }
