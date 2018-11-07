@@ -29,7 +29,7 @@ export class EditGroupPage implements OnInit, OnDestroy, AfterViewInit {
       this.sub = this.dataModel.getDataObserver().subscribe((config) => {
         this.group = config.groups[id];
         // Hack for MDC components to render correctly.
-        setTimeout(() => this.elements.forEach((el) => el.layout()), 10);
+        setTimeout(() => this.elements.forEach((el) => el.layout()), 100);
       });
     }
   }
