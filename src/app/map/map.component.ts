@@ -36,8 +36,8 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(change: SimpleChanges) {
-      if (change) {
-        console.log(change);
+      if (change['points']) {
+        this.updatePoints();
       }
     }
 
@@ -82,15 +82,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       this.map = GoogleMaps.create('map_canvas', mapOptions);
 
-        this.points.forEach((point) => this.markers.push(this.map.addMarkerSync({
-          title: point.title,
-          icon: '#174B6D',
-          animation: 'DROP',
-          position: {
-            lat: point.location.lat,
-            lng: point.location.lon
-          }
-        })));
+      this.addPoints();
 
       if (this.type === 'selection') {
         this.centerMarker = this.map.addMarkerSync({
@@ -109,5 +101,26 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
           this.centerMarker.setPosition(this.map.getCameraTarget());
         });
       }
+    }
+
+    addPoints() {
+      this.points.forEach((point) => {
+        if (point.location && this.map) {
+          this.markers.push(this.map.addMarkerSync({
+            title: point.title,
+            icon: 'blue',
+            animation: 'DROP',
+            position: {
+              lat: point.location.lat,
+              lng: point.location.lon
+            }
+          }));
+        }
+      });
+    }
+
+    updatePoints() {
+      this.markers = this.markers.filter((mark) => mark.remove());
+      this.addPoints();
     }
 }

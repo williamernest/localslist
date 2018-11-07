@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import { Location } from '@angular/common';
 import {MapService} from '../map.service';
 import {Group, Point} from '../Model';
@@ -33,14 +33,17 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
       this.sub = this.dataModel.getDataObserver().subscribe((config) => {
         this.group = config.groups[id];
 
-        if (pointId) {
+        if (pointId && this.group) {
           const existingPoint = this.group.points.filter((point) => pointId === point.id);
           if (existingPoint.length > 0) {
             this.point = existingPoint[0];
+            this.title = this.point.title;
+            this.description = this.point.description;
           }
-        } else if (this.group.points.filter((point) => point.id === this.point.id).length === 0){
+        } else if (this.group && this.group.points.filter((point) => point.id === this.point.id).length === 0){
           this.group.points.push(this.point);
         }
+        this.elements.forEach((tf) => tf.layout());
       });
     }
     if (this.mapService.lastSelectedPoint) {
@@ -48,6 +51,7 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
       this.mapService.lastSelectedPoint = null;
     }
   }
+
 
   ngAfterViewInit() {
     this.elements = Array.from(this.myElement.nativeElement.querySelectorAll('.mdc-text-field')).map((ele) => new MDCTextField(ele));
