@@ -9,6 +9,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import {Geofence} from "@ionic-native/geofence/ngx"
+import {DataModelService} from './data-model.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     SplashScreen,
+      Geofence,
+      DataModelService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
