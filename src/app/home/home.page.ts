@@ -14,7 +14,7 @@ export class HomePage implements OnInit, OnDestroy {
   groups: Array<Group> = [];
   sub: Subscription;
   constructor(
-    private navCtrl: NavController,
+    private router: Router,
     private dataModel: DataModelService
   ) {}
 
