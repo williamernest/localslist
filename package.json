@@ -33,7 +33,7 @@
     "@material/ripple": "^0.41.0",
     "@material/theme": "^0.41.0",
     "@material/top-app-bar": "^0.41.0",
-    "cordova-browser": "^5.0.4",
+    "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
     "cordova-plugin-add-swift-support": "^1.6.0",
     "cordova-plugin-compat": "^1.2.0",
@@ -95,6 +95,9 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {}
-    }
+    },
+    "platforms": [
+      "browser"
+    ]
   }
 }
