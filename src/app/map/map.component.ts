@@ -1,10 +1,10 @@
 import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  Marker,
-  Environment,
+    GoogleMaps,
+    GoogleMap,
+    GoogleMapsEvent,
+    GoogleMapOptions,
+    Marker,
+    Environment, LatLng,
 } from '@ionic-native/google-maps';
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core/';
 import {Platform} from '@ionic/angular';
@@ -17,6 +17,7 @@ import {Point, LatLon} from '../Model';
 export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
     map: GoogleMap;
     @Input() points: Array<Point> = [];
+    circles = [];
     @Input() type = 'selection';
     @Output() cameraPosition = new EventEmitter<LatLon>();
 
@@ -115,12 +116,21 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
               lng: point.location.lon
             }
           }));
+
+          if (point.radius !== 0) {
+              this.map.addCircle({
+                  center: new LatLng(point.location.lat, point.location.lon),
+                  radius: point.radius * 1600,    // 10 miles in metres
+                  fillColor: '#AA0000'
+              }).then((circ) => this.circles.push(circ));
+          }
         }
       });
     }
 
     updatePoints() {
       this.markers = this.markers.filter((mark) => mark.remove());
+      this.circles = this.circles.filter((circ) => circ.remove());
       this.addPoints();
     }
 }
