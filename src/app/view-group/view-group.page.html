@@ -38,9 +38,9 @@
       </div>
 
       <div *ngSwitchCase="'list'">
-        <ul>
-          <li *ngFor="let point of group?.points" (click)="editPoint(point.id)">
-            {{ point.title }}
+        <ul class="mdc-list" aria-orientation="vertical">
+          <li class="mdc-list-item" *ngFor="let point of group?.points" (click)="editPoint(point.id)">
+            <span class="mdc-list-item__text">{{ point.title }}</span>
           </li>
         </ul>
       </div>

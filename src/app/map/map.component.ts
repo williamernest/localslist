@@ -68,13 +68,14 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       const mapOptions: GoogleMapOptions = {
         camera: {
+          zoom: 14,
           tilt: 30,
           target: points,
         },
         preferences: {
           zoom: {
-            minZoom: 18,
-            maxZoom: 18
+            minZoom: 1,
+            maxZoom: 16
           }
         }
       };
@@ -83,7 +84,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
 
         this.points.forEach((point) => this.markers.push(this.map.addMarkerSync({
           title: point.title,
-          icon: 'blue',
+          icon: '#174B6D',
           animation: 'DROP',
           position: {
             lat: point.location.lat,
@@ -94,7 +95,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
       if (this.type === 'selection') {
         this.centerMarker = this.map.addMarkerSync({
               title: 'New Location',
-              icon: 'red',
+              icon: '#174B6D',
               animation: 'DROP',
               position: {
                 lat: 0,

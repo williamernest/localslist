@@ -1,7 +1,9 @@
+@import '../../theme/ll-theme';
 @import "@material/tab-bar/mdc-tab-bar";
 @import "@material/tab-scroller/mdc-tab-scroller";
 @import "@material/tab-indicator/mdc-tab-indicator";
 @import "@material/tab/mdc-tab";
+@import "@material/list/mdc-list";
 
 .content {
   height: 100%;
@@ -13,4 +15,8 @@
 .tab-flex {
   flex: 1 1 auto;
   height: calc(100% - 15px);
+}
+
+.mdc-tab {
+  border-radius: 50%;
 }
