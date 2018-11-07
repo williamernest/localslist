@@ -38,13 +38,15 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
           if (existingPoint.length > 0) {
             this.point = existingPoint[0];
           }
-        } else {
+        } else if (this.group.points.filter((point) => point.id === this.point.id).length === 0){
           this.group.points.push(this.point);
         }
       });
     }
-    this.point.location = this.mapService.lastSelectedPoint;
-
+    if (this.mapService.lastSelectedPoint) {
+      this.point.location = this.mapService.lastSelectedPoint;
+      this.mapService.lastSelectedPoint = null;
+    }
   }
 
   ngAfterViewInit() {
