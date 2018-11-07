@@ -11,10 +11,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
   { path: 'edit-group/:id', loadChildren: './edit/edit-group.module#EditGroupPageModule' },
   { path: 'edit-group', loadChildren: './edit/edit-group.module#EditGroupPageModule' },
   { path: 'view-group/:id', loadChildren: './view-group/view-group.module#ViewGroupPageModule' },
