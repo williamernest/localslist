@@ -20,3 +20,13 @@
 .mdc-tab {
   border-radius: 50%;
 }
+
+.group-empty-msg {
+  position: fixed;
+  width: 100%;
+  top: 30vh;
+  h2,
+  p {
+    text-align: center;
+  }
+}
