@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import { Location } from '@angular/common';
 import {MapService} from '../map.service';
 import {Group, Point} from '../Model';
@@ -27,7 +27,8 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy, OnChange
   constructor(private mapService: MapService, private location: Location, private myElement: ElementRef,
               private dataModel: DataModelService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private detectRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -47,7 +48,6 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy, OnChange
           this.group.points.push(this.point);
         }
         // Hack to get MDC components to render correctly.
-        setTimeout(() => this.elements.forEach((tf) => tf.layout()), 10);
       });
     }
     if (this.mapService.lastSelectedPoint) {
@@ -59,7 +59,13 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy, OnChange
   ngAfterViewInit() {
     this.elements = Array.from(this.myElement.nativeElement.querySelectorAll('.mdc-text-field')).map((ele) => new MDCTextField(ele));
     const slider = new MDCSlider(this.myElement.nativeElement.querySelector('.mdc-slider'));
-    slider.listen('MDCSlider:change', () => this.point.radius = slider.value);
+    slider.listen('MDCSlider:change', () => {
+      this.point.radius = slider.value;
+      this.point = Object.assign({}, this.point);
+      this.detectRef.detectChanges();
+    });
+    setTimeout(() => this.elements.forEach((tf) => tf.layout()), 100);
+
     this.elements.push(slider);
   }
 

@@ -25,7 +25,7 @@ class Point extends DateObject {
   title: string;
   description: string;
   location: LatLon;
-  radius: number;
+  radius = 25;
   conditions: Array<Condition> = [];
   constructor() {
     super();

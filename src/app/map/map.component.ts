@@ -120,7 +120,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
           if (point.radius !== 0) {
               this.map.addCircle({
                   center: new LatLng(point.location.lat, point.location.lon),
-                  radius: point.radius * 1600,    // 10 miles in metres
+                  radius: point.radius,
                   fillColor: '#AA0000'
               }).then((circ) => this.circles.push(circ));
           }
@@ -129,8 +129,14 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
 
     updatePoints() {
-      this.markers = this.markers.filter((mark) => mark.remove());
-      this.circles = this.circles.filter((circ) => circ.remove());
+      this.markers = this.markers.filter((mark) => {
+        mark.remove();
+        return false;
+      });
+      this.circles = this.circles.filter((circ) => {
+        circ.remove();
+        return false;
+      });
       this.addPoints();
     }
 }
