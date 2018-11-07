@@ -33,10 +33,7 @@
     "@material/ripple": "^0.41.0",
     "@material/theme": "^0.41.0",
     "@material/top-app-bar": "^0.41.0",
-<<<<<<< HEAD
-=======
     "cordova-android": "7.1.1",
->>>>>>> e87b906158dfe0e8e847f7e5eb9452a400605030
     "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
     "cordova-plugin-add-swift-support": "^1.6.0",
