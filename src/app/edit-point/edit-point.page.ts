@@ -2,7 +2,8 @@ import {AfterViewInit, Component, ElementRef, OnChanges, OnDestroy, OnInit, Simp
 import { Location } from '@angular/common';
 import {MapService} from '../map.service';
 import {Group, Point} from '../Model';
-import { MDCTextField} from '@material/textfield/index';
+import { MDCTextField } from '@material/textfield/index';
+import { MDCSlider } from '@material/slider/index';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {DataModelService} from '../data-model.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -12,7 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './edit-point.page.html',
   styleUrls: ['./edit-point.page.scss'],
 })
-export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
+export class EditPointPage implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
   point: Point = new Point();
   group: Group = new Group();
@@ -20,6 +21,8 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
   title: string;
   description: string;
   sub: Subscription;
+  min = 1;
+  max = 10;
 
   constructor(private mapService: MapService, private location: Location, private myElement: ElementRef,
               private dataModel: DataModelService,
@@ -43,7 +46,8 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
         } else if (this.group && this.group.points.filter((point) => point.id === this.point.id).length === 0){
           this.group.points.push(this.point);
         }
-        this.elements.forEach((tf) => tf.layout());
+        // Hack to get MDC components to render correctly.
+        setTimeout(() => this.elements.forEach((tf) => tf.layout()), 10);
       });
     }
     if (this.mapService.lastSelectedPoint) {
@@ -52,9 +56,15 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-
   ngAfterViewInit() {
     this.elements = Array.from(this.myElement.nativeElement.querySelectorAll('.mdc-text-field')).map((ele) => new MDCTextField(ele));
+    const slider = new MDCSlider(this.myElement.nativeElement.querySelector('.mdc-slider'));
+    slider.listen('MDCSlider:change', () => this.point.radius = slider.value);
+    this.elements.push(slider);
+  }
+
+  ngOnChanges(change: SimpleChanges) {
+    this.elements.forEach((el) => el.layout());
   }
 
   ngOnDestroy() {

@@ -9,6 +9,7 @@ import { EditPointPage } from './edit-point.page';
 import {TopAppBarModule} from '../top-app-bar/top-app-bar.module';
 import {MapModule} from '../map/map.module';
 
+
 const routes: Routes = [
   {
     path: '',

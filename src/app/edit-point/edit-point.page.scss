@@ -1,4 +1,16 @@
+@import "@material/slider/mdc-slider";
+
 .edit-view-textfield {
   display: flex;
+  margin: 10px 5px;
+}
+
+.mdc-slider {
+  display: flex;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
   margin: 10px 5px;
 }

@@ -16,7 +16,7 @@ export class EditGroupPage implements OnInit, OnDestroy, AfterViewInit {
 
   group: Group = new Group();
   sub: Subscription;
-  elements: Array<MDCTextField>;
+  elements: Array<MDCTextField> = [];
   title: string;
   description: string;
 
@@ -28,6 +28,8 @@ export class EditGroupPage implements OnInit, OnDestroy, AfterViewInit {
     if (id) {
       this.sub = this.dataModel.getDataObserver().subscribe((config) => {
         this.group = config.groups[id];
+        // Hack for MDC components to render correctly.
+        setTimeout(() => this.elements.forEach((el) => el.layout()), 10);
       });
     }
   }
