@@ -33,9 +33,10 @@
     "@material/ripple": "^0.41.0",
     "@material/theme": "^0.41.0",
     "@material/top-app-bar": "^0.41.0",
+    "cordova-android": "7.1.2",
     "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
-    "cordova-plugin-add-swift-support": "^1.7.2",
+    "cordova-plugin-add-swift-support": "1.7.2",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geofence": "^0.7.0",
@@ -87,16 +88,22 @@
       "cordova-plugin-geofence": {},
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyB0Dk71Zs2ICm1NRoUCTCjdB6E6IS-CrLs",
-        "API_KEY_FOR_IOS": "AIzaSyCfshD83y_WoimDWwf1R31gEjR2uNOWSt4"
+        "API_KEY_FOR_IOS": "AIzaSyCfshD83y_WoimDWwf1R31gEjR2uNOWSt4",
+        "PLAY_SERVICES_VERSION": "15.0.1",
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-add-swift-support": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }
