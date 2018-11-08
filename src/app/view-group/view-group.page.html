@@ -39,15 +39,17 @@
         <div *ngIf="group?.points.length >= 1" class="tab-flex">
           <app-map [points]="group?.points"></app-map>
         </div>
-        <div *ngIf="group?.points.length === 0" class="group-empty-msg">
-          <h2 class="mdc-list-item__primary-text">This group is empty</h2>
-          <p class="mdc-list-item__secondary-text">Save a pin and it will show up here. </p>
+        <div *ngIf="group?.points.length === 0" class="group-msg--empty">
+          <h2 class="mdc-list-item__text">This group is empty</h2>
+          <p class="mdc-list-item__text">Save a pin and it will show up here. </p>
         </div>
       </div>
 
       <div *ngSwitchCase="'list'">
         <ul class="mdc-list mdc-list--two-line" *ngIf="group?.points.length >= 1">
           <li class="mdc-list-item " *ngFor="let point of group?.points" (click)="editPoint(point.id)">
+
+                <span class="mdc-list-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
                 <span class="mdc-list-item__text">
             <span class="mdc-list-item__primary-text">{{ point.title }}</span>
             <span class="mdc-list-item__secondary-text">{{ point.description }}</span>
@@ -55,7 +57,7 @@
           </li>
         </ul>
         <ul *ngIf="group?.points.length === 0" class="mdc-list mdc-list--two-line">
-          <li  class="group-empty-msg">
+          <li  class="group-msg--empty">
             <h2 class="mdc-list-item__text">This group is empty</h2>
             <p class="mdc-list-item__text">Save a pin and it will show up here. </p>
           </li>

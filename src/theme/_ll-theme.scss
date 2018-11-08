@@ -1,6 +1,15 @@
 // Theme for Local List
 
 $mdc-theme-primary: #174b6d;
-$mdc-theme-secondary: #ffb891;
+$mdc-theme-secondary: #FFB791;
 $mdc-theme-on-primary: #fff;
 $mdc-theme-on-secondary: #000;
+
+$mdc-typography-styles-button: (
+  font-size: 16px,
+  text-transform: none,
+);
+
+$mdc-typography-font-family: 'Montserrat', sans-serif;
+
+@import "@material/typography/mdc-typography";

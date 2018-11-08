@@ -21,7 +21,11 @@
   border-radius: 50%;
 }
 
-.group-empty-msg {
+.mdc-list-item__icon {
+  margin-right: 1rem;
+}
+
+.group-msg--empty {
   position: fixed;
   width: 100%;
   top: 30vh;
