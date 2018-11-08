@@ -22,8 +22,8 @@ export class DataModelService {
 
   save() {
     this.storage.set('locallist', JSON.stringify(this.data)).catch((err) => console.log(err));
-    Object.keys(this.data.groups).forEach((group) => this.data.groups[group].points.forEach((point) => this.geofenceService.addGeofence(point)));
     this.observer.next(this.data);
+    Object.keys(this.data.groups).forEach((group) => this.data.groups[group].points.forEach((point) => this.geofenceService.addGeofence(point)));
   }
 
   load() {

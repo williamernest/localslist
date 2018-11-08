@@ -38,11 +38,15 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
 
     ngOnChanges(change: SimpleChanges) {
       if (change['points']) {
-        this.updatePoints();
+        if (this.map) {
+          this.updatePoints();
+        }
       }
     }
 
     ngOnDestroy() {
+      this.removeAll();
+
       if (this.map) {
         this.map.destroy();
       }
@@ -52,8 +56,8 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       // This code is necessary for browser
       Environment.setEnv({
-        'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q',
-        'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyACsx-FWosix8J5bMR3QURX47d452i_g9Q'
+        'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyC8FVblmzrCmPKffbexACfScZPG29ur9go',
+        'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyC8FVblmzrCmPKffbexACfScZPG29ur9go'
       });
 
       const points = this.points.map((point) => {
@@ -129,6 +133,11 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
 
     updatePoints() {
+      this.removeAll();
+      this.addPoints();
+    }
+
+    removeAll() {
       this.markers = this.markers.filter((mark) => {
         mark.remove();
         return false;
@@ -137,6 +146,5 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
         circ.remove();
         return false;
       });
-      this.addPoints();
     }
 }

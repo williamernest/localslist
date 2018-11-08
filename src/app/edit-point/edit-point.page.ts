@@ -44,10 +44,11 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy, OnChange
             this.title = this.point.title;
             this.description = this.point.description;
           }
-        } else if (this.group && this.group.points.filter((point) => point.id === this.point.id).length === 0){
+        } else if (this.group && this.group.points.filter((point) => point.id === this.point.id).length === 0) {
           this.group.points.push(this.point);
         }
-        // Hack to get MDC components to render correctly.
+
+        setTimeout(() => this.sub.unsubscribe(), 0);
       });
     }
     if (this.mapService.lastSelectedPoint) {
@@ -85,7 +86,7 @@ export class EditPointPage implements OnInit, AfterViewInit, OnDestroy, OnChange
   save() {
     this.point.title = this.title;
     this.point.description = this.description;
-    // this.point.raduis = this.radius;
+
     this.dataModel.updateGroup(this.group);
     this.router.navigate(['/view-group', this.group.id]);
   }
