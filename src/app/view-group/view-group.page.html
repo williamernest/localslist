@@ -35,23 +35,27 @@
 
     <div [ngSwitch]="currentTab" class="tab-flex">
 
-      <div ng-if="group?.points >= 1" *ngSwitchCase="'map'" class="tab-flex">
-        <div ng-if="group?.points >= 1" >
+      <div *ngSwitchCase="'map'" class="tab-flex">
+        <div *ngIf="group?.points.length >= 1" class="tab-flex">
           <app-map [points]="group?.points"></app-map>
         </div>
-        <div ng-if="group?.points == 0" class="group-empty-msg">
-          <h2 class="mdc-list-item__text">This group is empty</h2>
-          <p class="mdc-list-item__text">Save a pin and it will show up here. </p>
+        <div *ngIf="group?.points.length === 0" class="group-empty-msg">
+          <h2 class="mdc-list-item__primary-text">This group is empty</h2>
+          <p class="mdc-list-item__secondary-text">Save a pin and it will show up here. </p>
         </div>
       </div>
 
       <div *ngSwitchCase="'list'">
-        <ul class="mdc-list" aria-orientation="vertical">
-          <li ng-if="group?.points >= 1" class="mdc-list-item" *ngFor="let point of group?.points" (click)="editPoint(point.id)">
-            <span class="mdc-list-item__text">{{ point.title }}</span>
-            <span class="mdc-list-item__text">{{ point.description }}</span>
+        <ul class="mdc-list mdc-list--two-line" *ngIf="group?.points.length >= 1">
+          <li class="mdc-list-item " *ngFor="let point of group?.points" (click)="editPoint(point.id)">
+                <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text">{{ point.title }}</span>
+            <span class="mdc-list-item__secondary-text">{{ point.description }}</span>
+                </span>
           </li>
-          <li ng-if="group?.points == 0" class="group-empty-msg">
+        </ul>
+        <ul *ngIf="group?.points.length === 0" class="mdc-list mdc-list--two-line">
+          <li  class="group-empty-msg">
             <h2 class="mdc-list-item__text">This group is empty</h2>
             <p class="mdc-list-item__text">Save a pin and it will show up here. </p>
           </li>

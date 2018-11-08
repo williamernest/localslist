@@ -39,12 +39,12 @@ export class GeofenceService {
         openAppOnClick: true // open app when notification is tapped
       }
     };
-    if (this.platform.is('ios') || this.platform.is('android')) {
-      this.geofence.addOrUpdate(fence).then(
-          () => console.log('Geofence added'),
-          (err) => console.log('Geofence failed to add')
-      );
-    }
+    // if (this.platform.is('ios') || this.platform.is('android')) {
+    //   this.geofence.addOrUpdate(fence).then(
+    //       () => console.log('Geofence added'),
+    //       (err) => console.log('Geofence failed to add')
+    //   );
+    // }
 
   }
 }
