@@ -5,7 +5,7 @@ import {Location} from '@angular/common';
 import {Group} from '../Model';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {MDCTabBar} from '@material/tab-bar/index';
-import {ChangeDetectionPerfRecord} from '@angular/platform-browser/src/browser/tools/common_tools';
+import {MDCRipple} from '@material/ripple/index';
 
 @Component({
   selector: 'app-view-group',
@@ -19,6 +19,7 @@ export class ViewGroupPage implements OnInit, OnDestroy, AfterViewInit {
   sub: Subscription;
   tab: MDCTabBar;
   currentTab = 'list';
+  elements = [];
 
   constructor(private router: Router, private dataModel: DataModelService, private location: Location, private route: ActivatedRoute,
               private myElement: ElementRef, private detectChange: ChangeDetectorRef) {}
@@ -35,9 +36,11 @@ export class ViewGroupPage implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.tab = new MDCTabBar(this.myElement.nativeElement.querySelector('.mdc-tab-bar'));
+    this.elements.push(...Array.from(this.myElement.nativeElement.querySelectorAll('.mdc-list-item')).map((el) => new MDCRipple(el)));
   }
 
   ngOnDestroy() {
+    this.elements.forEach((el) => el.destroy());
     if (this.sub) {
       this.sub.unsubscribe();
     }

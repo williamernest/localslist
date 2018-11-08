@@ -1,3 +1,5 @@
+@import "../../theme/ll-theme.scss";
+@import "@material/button/mixins.scss";
 
 .content {
   display: flex;
@@ -9,6 +11,7 @@
 }
 
 .select-point-button {
+  @include mdc-button-filled-accessible($mdc-theme-secondary);
   position: fixed;
   bottom: 15px;
   right: 15px;

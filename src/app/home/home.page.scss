@@ -1,11 +1,16 @@
 @import '../../theme/ll-theme';
 @import '@material/card/mdc-card';
+@import "@material/icon-button/mdc-icon-button";
 
 .mdc-card {
   margin-bottom: 2rem;
-  border-radius: 12px 12px 12px 4px;
+  border-radius: 12px 12px 0px 12px;
 }
 
 .mdc-card__label {
   padding: 1.25rem;
+}
+
+.mdc-card__action {
+  padding: .5rem;
 }

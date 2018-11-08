@@ -10,18 +10,21 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-@import "@material/typography/mdc-typography";
+@import './theme/ll-theme.scss';
+@import '@material/typography/mdc-typography';
 @import './app/top-app-bar/top-app-bar.component';
 @import '@material/fab/mdc-fab';
 @import '@material/button/mdc-button';
 @import '@material/textfield/mdc-text-field';
+@import "@material/typography/mdc-typography";
+@import "@material/ripple/mdc-ripple";
 
 body {
   background-color: #e6e6e6;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .app-add-new-fab {

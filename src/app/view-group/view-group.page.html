@@ -1,6 +1,10 @@
 <app-top-app-bar [title]="group?.title" type="back" (navClick)="navigateBack()">
+  <button class="mdc-top-app-bar__action-item">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92zM18 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 7.02c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+  </button>
   <button class="mdc-top-app-bar__action-item" (click)="editGroup()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>  </button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
+  </button>
 </app-top-app-bar>
 
 <ion-content>
@@ -39,15 +43,17 @@
         <div *ngIf="group?.points.length >= 1" class="tab-flex">
           <app-map [points]="group?.points"></app-map>
         </div>
-        <div *ngIf="group?.points.length === 0" class="group-empty-msg">
-          <h2 class="mdc-list-item__primary-text">This group is empty</h2>
-          <p class="mdc-list-item__secondary-text">Save a pin and it will show up here. </p>
+        <div *ngIf="group?.points.length === 0" class="group-msg--empty">
+          <h2 class="mdc-list-item__text">This group is empty</h2>
+          <p class="mdc-list-item__text">Save a pin and it will show up here. </p>
         </div>
       </div>
 
       <div *ngSwitchCase="'list'">
         <ul class="mdc-list mdc-list--two-line" *ngIf="group?.points.length >= 1">
           <li class="mdc-list-item " *ngFor="let point of group?.points" (click)="editPoint(point.id)">
+
+                <span class="mdc-list-item__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
                 <span class="mdc-list-item__text">
             <span class="mdc-list-item__primary-text">{{ point.title }}</span>
             <span class="mdc-list-item__secondary-text">{{ point.description }}</span>
@@ -55,7 +61,7 @@
           </li>
         </ul>
         <ul *ngIf="group?.points.length === 0" class="mdc-list mdc-list--two-line">
-          <li  class="group-empty-msg">
+          <li  class="group-msg--empty">
             <h2 class="mdc-list-item__text">This group is empty</h2>
             <p class="mdc-list-item__text">Save a pin and it will show up here. </p>
           </li>

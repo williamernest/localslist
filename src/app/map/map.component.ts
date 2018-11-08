@@ -77,16 +77,20 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
           tilt: 30,
           target: points,
         },
+        controls: {
+          'zoom': false,       
+          'mapToolbar': false  
+        },
         preferences: {
           zoom: {
             minZoom: 1,
-            maxZoom: 16
+            maxZoom: 18
           }
         }
       };
 
       this.map = GoogleMaps.create('map_canvas', mapOptions);
-
+      console.log('map options', mapOptions);
       this.addPoints();
 
       if (this.type === 'selection') {
@@ -113,7 +117,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
         if (point.location && this.map) {
           this.markers.push(this.map.addMarkerSync({
             title: point.title,
-            icon: 'blue',
+            icon: '#174B6D',
             animation: 'DROP',
             position: {
               lat: point.location.lat,
@@ -125,7 +129,9 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
               this.map.addCircle({
                   center: new LatLng(point.location.lat, point.location.lon),
                   radius: point.radius,
-                  fillColor: '#AA0000'
+                  fillColor: '#FFB791',
+                  fillOpacity: .4,
+                  strokeColor: '#FF8256'
               }).then((circ) => this.circles.push(circ));
           }
         }
