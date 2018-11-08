@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataModelService} from '../data-model.service';
 import {Location} from '@angular/common';
 import {Group} from '../Model';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {MDCTabBar} from '@material/tab-bar/index';
+import {ChangeDetectionPerfRecord} from '@angular/platform-browser/src/browser/tools/common_tools';
 
 @Component({
   selector: 'app-view-group',
@@ -20,13 +21,14 @@ export class ViewGroupPage implements OnInit, OnDestroy, AfterViewInit {
   currentTab = 'list';
 
   constructor(private router: Router, private dataModel: DataModelService, private location: Location, private route: ActivatedRoute,
-              private myElement: ElementRef) {}
+              private myElement: ElementRef, private detectChange: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.sub = this.dataModel.getDataObserver().subscribe((config) => {
         this.group = config.groups[this.id];
+        this.detectChange.detectChanges();
       });
     }
   }
